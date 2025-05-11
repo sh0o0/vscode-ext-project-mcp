@@ -68,3 +68,7 @@ This extension does not contribute any settings yet.
 ---
 
 **Enjoy using Project MCP!**
+
+## References
+- [vscode v1.100 update for mcp api](https://code.visualstudio.com/updates/v1_100#_mcp-servers-contributed-by-extensions)
+- [mcp-extension-sample](https://github.com/microsoft/vscode-extension-samples/tree/main/mcp-extension-sample)
