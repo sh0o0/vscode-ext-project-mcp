@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 				try {
 					const buf = await vscode.workspace.fs.readFile(configUri);
-					const json = JSON.parse(buf.toString());
+					const json = JSON.parse(buf.toString()) as ProjectMcpConfig;
 
 					if (typeof json.servers === 'object' && json.servers !== null) {
 						for (const [label, server] of Object.entries(json.servers)) {
@@ -68,6 +68,17 @@ export function activate(context: vscode.ExtensionContext) {
 	// Refresh on workspace open
 	emitter.fire();
 }
+
+export type ProjectMcpConfig = {
+	servers: {
+		[label: string]: {
+			command: string;
+			args?: string[];
+			env?: Record<string, string>;
+		};
+	};
+};
+
 
 /**
  * Traverse up from startUri and return the URI of the first found .vscode/project.mcp.json
