@@ -1,82 +1,53 @@
-# project-mcp README
+# project-mcp
 
-This is the README for your extension "project-mcp". After writing up a brief description, we recommend including the following sections.
-
-- [ ] リファクタリング
-- [ ] READMEの編集
-
-## TODO
-
-- [ ] inputs 対応
-- [ ] stdin 以外の対応
-- [ ] path 指定のほうがいいかな？
-- [ ] 開いているワークスペースのproject.mcp.json を読み込む
-- [ ] 読み込む MPC を選択可能
+Project MCP is a Visual Studio Code extension for managing and launching MCP servers defined in a `project.mcp.json` file within your workspace. It provides a convenient way to register and refresh MCP server definitions for your projects.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Automatically detects `.vscode/project.mcp.json` in your workspace or parent folders
+- Registers MCP servers defined in the JSON file
+- Manual refresh command (`Project MCP: Refresh`)
+- Supports custom server commands, arguments, and environment variables
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Add a `project.mcp.json` file under your workspace's `.vscode` directory. Example:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+```json
+{
+  "servers": {
+    "my-server": {
+      "command": "node",
+      "args": ["server.js"],
+      "env": { "PORT": "3000" }
+    }
+  }
+}
+```
 
-## Requirements
+2. Use the command palette to run `Project MCP: Refresh` if you update the config.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## TODO
+
+- Support for input prompts
+- Support for non-stdin communication
+- Allow specifying config path
+- Allow selecting which MCP config to load if multiple are found
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-- `myExtension.enable`: Enable/disable this extension.
-- `myExtension.thing`: Set to `blah` to do something.
+This extension does not contribute any settings yet.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Only supports `.vscode/project.mcp.json` (not configurable)
+- No UI for managing servers
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+### 0.0.1
+- Initial release
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy using Project MCP!**
