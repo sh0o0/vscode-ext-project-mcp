@@ -1,6 +1,10 @@
 # project-mcp
 
-Project MCP is a Visual Studio Code extension for managing and launching MCP servers defined in a `project.mcp.json` file within your workspace. It provides a convenient way to register and refresh MCP server definitions for your projects.
+**Note: As of May 2025, this extension is only available on VS Code Insiders. From June 2025, it will also be available on VS Code Stable.**
+
+Project MCP is a Visual Studio Code extension that lets you define MCP servers available across your entire project. By placing a `project.mcp.json` file in your workspace, you can centrally manage and launch MCP servers for the whole project from a single configuration file.
+
+It provides a convenient way to register and refresh MCP server definitions for your projects.
 
 ## Features
 
@@ -10,6 +14,19 @@ Project MCP is a Visual Studio Code extension for managing and launching MCP ser
 - Supports custom server commands, arguments, and environment variables
 
 ## Usage
+
+You can define MCP servers that are available project-wide by adding a `project.mcp.json` file under your workspace's `.vscode` directory. All team members and tools in the project can share these server definitions.
+
+For example, if you have the following folder structure:
+
+```
+/parent-folder
+  └─ .vscode/project.mcp.json
+  └─ child-project/
+      └─ (open this folder in VS Code)
+```
+
+When you open `child-project` in VS Code, Project MCP will automatically detect and use the `.vscode/project.mcp.json` from the parent folder.
 
 1. Add a `project.mcp.json` file under your workspace's `.vscode` directory. Example:
 
