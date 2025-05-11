@@ -2,6 +2,9 @@
 
 This is the README for your extension "project-mcp". After writing up a brief description, we recommend including the following sections.
 
+- [ ] リファクタリング
+- [ ] READMEの編集
+
 ## TODO
 
 - [ ] inputs 対応

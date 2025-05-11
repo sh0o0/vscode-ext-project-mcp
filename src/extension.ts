@@ -1,18 +1,23 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 
+const VSCODE_DIR = '.vscode';
+const PROJECT_MCP_JSON = 'project.mcp.json';
+const EXTENSION_ID = 'project-mcp';
+const COMMAND_REFRESH_ID = `${EXTENSION_ID}.refresh`;
+
 export function activate(context: vscode.ExtensionContext) {
 	const emitter = new vscode.EventEmitter<void>();
 	context.subscriptions.push(emitter);
 
-	// 手動リフレッシュコマンド
-	const refreshCmd = vscode.commands.registerCommand('project-mcp.refresh', () => {
+	// Manual refresh command
+	const refreshCmd = vscode.commands.registerCommand(COMMAND_REFRESH_ID, () => {
 		emitter.fire();
 		vscode.window.showInformationMessage('Project MCP refreshed.');
 	});
 	context.subscriptions.push(refreshCmd);
 
-	// MCP サーバー定義プロバイダーの登録
+	// Register MCP server definition provider
 	const provider: vscode.McpServerDefinitionProvider = {
 		onDidChangeMcpServerDefinitions: emitter.event,
 		provideMcpServerDefinitions: async () => {
@@ -57,30 +62,30 @@ export function activate(context: vscode.ExtensionContext) {
 	};
 
 	context.subscriptions.push(
-		vscode.lm.registerMcpServerDefinitionProvider('project-mcp', provider)
+		vscode.lm.registerMcpServerDefinitionProvider(EXTENSION_ID, provider)
 	);
 }
 
 /**
- * startUri から上位ディレクトリを辿り、最初に見つかった .vscode/project.mcp.json の URI を返す
+ * Traverse up from startUri and return the URI of the first found .vscode/project.mcp.json
  */
 async function findUpConfig(startUri: vscode.Uri): Promise<vscode.Uri | null> {
 	let current = startUri.fsPath;
 
 	while (true) {
-		const configPath = path.join(current, '.vscode', 'project.mcp.json');
+		const configPath = path.join(current, VSCODE_DIR, PROJECT_MCP_JSON);
 		const configUri = vscode.Uri.file(configPath);
 
 		try {
 			await vscode.workspace.fs.stat(configUri);
 			return configUri;
 		} catch {
-			// 存在しない場合は親へ
+			// If not found, go to parent
 		}
 
 		const parent = path.dirname(current);
 		if (parent === current) {
-			break; // ルート到達
+			break; // Reached root
 		}
 		current = parent;
 	}
