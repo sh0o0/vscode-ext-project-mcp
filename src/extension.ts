@@ -64,6 +64,9 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.lm.registerMcpServerDefinitionProvider(EXTENSION_ID, provider)
 	);
+
+	// Refresh on workspace open
+	emitter.fire();
 }
 
 /**
