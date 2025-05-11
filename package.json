@@ -6,6 +6,9 @@
   "engines": {
     "vscode": "^1.100.0"
   },
+  "repository": {
+    "url": "https://github.com/sh0o0/vscode-ext-project-mcp"
+  },
   "categories": [
     "Other"
   ],
