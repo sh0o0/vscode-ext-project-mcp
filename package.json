@@ -14,8 +14,22 @@
   "contributes": {
     "commands": [
       {
-        "command": "project-mcp.helloWorld",
-        "title": "Hello World"
+        "command": "project-mcp.refresh",
+        "title": "Refresh"
+      }
+    ],
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "project-mcp",
+        "label": "Project MCP"
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          "**/project.mcp.json"
+        ],
+        "url": "vscode://schemas/mcp"
       }
     ]
   },
