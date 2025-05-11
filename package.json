@@ -1,16 +1,17 @@
 {
   "name": "project-mcp",
-  "displayName": "project-mcp",
+  "displayName": "Project MCP",
   "description": "Project MCP is a Visual Studio Code extension that lets you define MCP servers available across your entire project. By placing a project.mcp.json file in your workspace, you can centrally manage and launch MCP servers for the whole project from a single configuration file.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.100.0"
   },
+  "publisher": "sh0o0",
   "repository": {
     "url": "https://github.com/sh0o0/vscode-ext-project-mcp"
   },
   "categories": [
-    "Other"
+    "Chat"
   ],
   "activationEvents": [
     "*"
